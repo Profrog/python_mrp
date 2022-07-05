@@ -15,9 +15,9 @@ from matplotlib.colors import ListedColormap
 # 로그 .txt 파일의 이름을 input.txt로 변형합니다
 # linux 명령어 창에서 "python3 convert.py" 명령어를 통하여 본 프로그램을 실행하면 "output.txt"에 정리되어 나옵니다
 
-b_time = 10 #10초 간격으로 묶음
+b_time = 60 #10초 간격으로 묶음
 a = 1 #기본값
-bound = 0 #0일때는 모두 같은색, 1일때는 b_time 간격으로 다른색
+bound = 1 #0일때는 모두 같은색, 1일때는 b_time 간격으로 다른색
 file_name = 'move'
 
 
@@ -56,7 +56,7 @@ while string0:
   
   if time_a > b_time: 
    a = a + bound
-   b_time = b_time + 10
+   b_time = b_time * 2
   
   point_mark(y1,y1+4,x1,x1+4,a)
   
@@ -69,8 +69,8 @@ while string0:
   print("error " + string0) 
 
 
-cmap0 = plt.get_cmap('Greys')
-plt.matshow(test1, cmap = cmap0)
+#cmap0 = plt.get_cmap('Greys')
+plt.matshow(test1)
 #plt.grid(True, color = 'black')
 #plt.show()
 plt.savefig(file_name + str(bound) + '.png', dpi=300)  
