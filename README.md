@@ -22,7 +22,7 @@ So 2 cm CEP when Base and Rover 10 Km apart​
 
 
 test_mrp.py : n분간 $GNGLL 포멧으로 들어온 경도, 위도 분석 
-map
+map_mrp.py : test_mrp.py의 데이터로 map
 
 
 
