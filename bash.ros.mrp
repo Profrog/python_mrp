@@ -1,0 +1,9 @@
+source /opt/ros/noetic/setup.bash
+roscore
+
+source /opt/ros/noetic/setup.bash
+rostopic echo /nmea_sentence
+
+source /opt/ros/noetic/setup.bash
+sudo chmod 777 /dev/ttyUSB0
+rosrun nmea_navsat_driver nmea_topic_serial_reader _port:=/dev/ttyUSB0 _baud:=115200
