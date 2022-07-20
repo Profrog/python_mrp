@@ -61,10 +61,11 @@ client_sock,address = server_sock.accept()
 
 forsplit = '	'
 yellow = LED(4)
+yellow.on()
 
 i = 0
 print('lat	lon')
-yellow.on()
+
 while end0 - start0 <= 600:
  #data0 =  open(raw_0, 'a')
  data =  open(raw_1, 'a')
