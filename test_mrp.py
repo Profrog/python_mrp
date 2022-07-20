@@ -11,7 +11,7 @@
 # Description:       Enable service provided by daemon.
 ### END INIT INFO
 
-
+from gpiozero import LED
 import serial
 import time
 import os
@@ -22,6 +22,7 @@ import sys
 import time
 import codecs
 from datetime import datetime
+import bluetooth
 now = datetime.now()
 now_0 = str(now.hour) + ":" + str(now.minute) + ":" + str(now.second)
 
@@ -50,10 +51,20 @@ def lon(g):
  return (float(g[:3]) + float(g[3:])/60)
 
 
+server_sock=bluetooth.BluetoothSocket( bluetooth.RFCOMM )
+
+port=bluetooth.PORT_ANY
+server_sock.bind(("",port))
+server_sock.listen(1)
+ 
+client_sock,address = server_sock.accept()
+
 forsplit = '	'
+yellow = LED(4)
 
 i = 0
 print('lat	lon')
+yellow.on()
 while end0 - start0 <= 600:
  #data0 =  open(raw_0, 'a')
  data =  open(raw_1, 'a')
@@ -71,9 +82,14 @@ while end0 - start0 <= 600:
  if data_list[0] == '$GNGLL':
   string0 = str(end0-start0) + forsplit + str(lat(data_list[1])) + forsplit + str(lon(data_list[3])) + "\n"
   print(str(end0-start0) + ": " + string0)
+  client_sock.send(string0);
   #print(i)
   data.write(string0)
   #time.sleep(0.01)
   #i = i + 1
  data.close()
  #data0.close()
+ 
+client_sock.close()
+server_sock.close() 
+yellow.off()
