@@ -15,6 +15,7 @@ from gpiozero import LED
 import serial
 import time
 import os
+import math
 import string
 import argparse
 #import cv2
@@ -37,6 +38,13 @@ global ser
 ser = serial.Serial('/dev/ttyUSB0', 115200)
 
 
+lat0 = 0
+lon0 = 0
+lat_conv = 111000
+lon_conv = 91170
+
+l_count = 0
+
 
 def lat(t):
  if t == '':
@@ -49,19 +57,28 @@ def lon(g):
    return 0
   
  return (float(g[:3]) + float(g[3:])/60)
-
-
-server_sock=bluetooth.BluetoothSocket( bluetooth.RFCOMM )
-
-port=bluetooth.PORT_ANY
-server_sock.bind(("",port))
-server_sock.listen(1)
  
-client_sock,address = server_sock.accept()
+ 
+def speed0(lat1, lon1):
+ if l_count == 0:
+   return 0
+ 
+ else:
+   return math.sqrt(math.pow(lat_conv * (lat1-lat0) , 2) + math.pow(lon_conv * (lon1-lon0) , 2))
+
+
 
 forsplit = '	'
 yellow = LED(4)
 yellow.on()
+
+###bleutooth####
+server_sock=bluetooth.BluetoothSocket( bluetooth.RFCOMM )
+port=bluetooth.PORT_ANY
+server_sock.bind(("",port))
+server_sock.listen(1)
+client_sock,address = server_sock.accept()
+########
 
 i = 0
 print('lat	lon')
@@ -75,19 +92,25 @@ while end0 - start0 <= 600:
  line = ser.readline()
  #line = str(line, errors='ignore')
  
- print(line)
+ #print(line)
  #data0.write(line.decode("utf-8"))
  data_list = line.decode("utf-8").split(',')
  #print(data_list[0])
  
  if data_list[0] == '$GNGLL':
-  string0 = str(end0-start0) + forsplit + str(lat(data_list[1])) + forsplit + str(lon(data_list[3])) + "\n"
+  lat1 = lat(data_list[1])
+  lon1 = lon(data_list[3]) 
+  string0 = str(end0-start0) + forsplit + str(lat1) + forsplit + str(lon1) + forsplit + str(speed0(lat1,lon1)) + "\n"
   print(str(end0-start0) + ": " + string0)
   client_sock.send(string0);
   #print(i)
   data.write(string0)
+  lat0 = lat1
+  lon0 = lon1 
+  l_count = l_count + 1
   #time.sleep(0.01)
   #i = i + 1
+  
  data.close()
  #data0.close()
  
