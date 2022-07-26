@@ -23,7 +23,7 @@ import sys
 import time
 import codecs
 from datetime import datetime
-import decimal
+#import decimal
 import bluetooth
 now = datetime.now()
 now_0 = str(now.hour) + ":" + str(now.minute) + ":" + str(now.second)
@@ -62,13 +62,13 @@ def lat(t):
  if t == '':
    return 0
   
- return (Decimal(t[:2]) + Decimal(t[2:])/60)
+ return (float(t[:2]) + float(t[2:])/60)
 
 def lon(g):
  if g == '':
    return 0
   
- return (Decimal(g[:3]) + Decimal(g[3:])/60)
+ return (float(g[:3]) + float(g[3:])/60)
  
  
 def speed0(lat1, lon1):
