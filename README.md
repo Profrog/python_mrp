@@ -40,7 +40,7 @@ a. 품목 준비
 
 ---
 
-b. 코드세팅  
+b. 라즈베리파이 세팅  
 b-1 : 라즈베리파이3에 라즈비안(제작자 기준버전 : 2022-04-04-raspios-buster-armhf.img) 설치 후  
 home -> pi디렉토리에 파이썬 코드 추가
 
@@ -62,9 +62,14 @@ b-3 부팅 스크립트 수정
 ![image](https://user-images.githubusercontent.com/26535065/182523662-5c558961-c214-4009-a4e5-192ca95d9b46.png)
 
 
+b-4 led세팅(선택)
 
+![image](https://user-images.githubusercontent.com/26535065/182523967-30f8819b-ec3e-4286-9ced-cd02ba5cf6de.png)
 
+led의 긴 방향(+) : 7번핀(GPIO 4)에 연결  
+led의 짧은 방향(-) : 저항과 연결 후 저항의 다른쪽 끝을 6번핀(ground)에 연결
 
+![image](https://user-images.githubusercontent.com/26535065/182524210-b1b0aad2-dad6-427e-9598-84154c318eb3.png)
 
 
 
