@@ -28,7 +28,7 @@ map_mrp.py : test_mrp.py의 데이터로 map
 
 -----------------------------------------세팅 방법----------------------------  
 
-a. 품목 준비
+a. 품목 준비  
 필수 구성품목 : mrp-2000세트(본체, gnss & dmb 안테나, rs232 to usb serial port, 라즈베리파이3(16gb 이상 sd카드포함)  
 선택 구성품목 : led, 저항(100~1k 옴)  
 
@@ -37,7 +37,11 @@ a. 품목 준비
 2. https://www.devicemart.co.kr/main/index  
 
 
-b. 코드세팅
+b. 코드세팅  
+b-1 : 라즈베리파이3에 라즈비안(제작자 기준버전 : 2022-04-04-raspios-buster-armhf.img) 설치 후  
+home -> pi디렉토리에 파이썬 코드 추가  
+https://github.com/Profrog/python_mrp/blob/main/test_mrp.py  
+
 
 
 
