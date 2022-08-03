@@ -59,8 +59,7 @@ b-3 부팅 스크립트 수정
 > sudo nano /etc/profile.d/bash_completion.sh  
 > "sudo ./test &" 기입  
 
-![image](https://user-images.githubusercontent.com/26535065/182523662-5c558961-c214-4009-a4e5-192ca95d9b46.png)
-
+![image](https://user-images.githubusercontent.com/26535065/182524309-f8955f16-83aa-47b3-90a9-1b92e5efac9f.png)
 
 b-4 led세팅(선택)
 
