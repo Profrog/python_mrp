@@ -97,7 +97,7 @@ c-1 휴대폰 세팅
  https://play.google.com/store/apps/details?id=com.crhostservices.com.crhostservices.androidbtcontrol  
 
 해당 앱 설치  
-![image](https://user-images.githubusercontent.com/26535065/182526616-d740ff3c-da85-45bb-9132-5c9b21148c46.png)
+![image](https://user-images.githubusercontent.com/26535065/182527228-3fad81f2-391f-409d-a415-50cf9f1feda5.png)
 
 ---
 
