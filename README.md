@@ -45,8 +45,8 @@ b-1 : 라즈베리파이3에 라즈비안(제작자 기준버전 : 2022-04-04-ra
 home -> pi디렉토리에 파이썬 코드 추가
 
 '''  
-touch test_mrp.py  
-https://github.com/Profrog/python_mrp/blob/main/test_mrp.py   
+> touch test_mrp.py  
+> https://github.com/Profrog/python_mrp/blob/main/test_mrp.py   
 (코드 내용 복사)  
 '''  
 
