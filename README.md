@@ -76,8 +76,8 @@ b-4 블루투스 설정
 > sudo pip3 install pybluez pybleno  
 > sudo hciconfig hci0 piscan  
 
-연결하고자 하는 휴대폰에서 라즈베리파이가 인식되면 등록한다
-![image](https://user-images.githubusercontent.com/26535065/182525849-f65b8775-3309-4374-a927-9f92bf20fc2d.png)
+연결하고자 하는 휴대폰에서 라즈베리파이가 인식되면 등록한다  
+![image](https://user-images.githubusercontent.com/26535065/182525849-f65b8775-3309-4374-a927-9f92bf20fc2d.png)  
 
 
 b-5 led세팅(선택)
