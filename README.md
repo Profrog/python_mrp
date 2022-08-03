@@ -21,12 +21,12 @@ So 2 cm CEP when Base and Rover 10 Km apart​
 -----------------------------------------코드 설명----------------------------  
 
 
-test_mrp.py : n분간 $GNGLL 포멧으로 들어온 경도, 위도 분석
-map_mrp.py : test_mrp.py의 데이터로 map
-test : 자동화 시스템을 위한 bash 파일
-bash.ros.mrp : ros를 이용해 mrp-2000 topic내용을 받아볼 수 있는 bash파일(사전 ros관련 세팅이 되어 있어야함)  
+test_mrp.py : n분간 $GNGLL 포멧으로 들어온 경도, 위도 분석  
+map_mrp.py : test_mrp.py의 데이터로 map  
+test : 자동화 시스템을 위한 bash 파일  
+bash.ros.mrp : ros를 이용해 mrp-2000 topic내용을 받아볼 수 있는 bash파일(사전 ros관련 세팅이 되어 있어야함)    
 
-실험영상 : https://www.youtube.com/watch?v=fOSTibGu1l0
+실험영상 : https://www.youtube.com/watch?v=fOSTibGu1l0  
 
 -----------------------------------------세팅 방법----------------------------  
 
