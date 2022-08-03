@@ -37,6 +37,7 @@ a. 품목 준비
 2. https://www.devicemart.co.kr/main/index  
 
 
+
 b. 코드세팅  
 b-1 : 라즈베리파이3에 라즈비안(제작자 기준버전 : 2022-04-04-raspios-buster-armhf.img) 설치 후  
 home -> pi디렉토리에 파이썬 코드 추가  
