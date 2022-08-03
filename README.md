@@ -93,7 +93,6 @@ led의 짧은 방향(-) : 저항과 연결 후 저항의 다른쪽 끝을 6번�
 
 c 휴대폰 세팅
 
-c-1 휴대폰 세팅  
  https://play.google.com/store/apps/details?id=com.crhostservices.com.crhostservices.androidbtcontrol  
 
 해당 앱 설치  
