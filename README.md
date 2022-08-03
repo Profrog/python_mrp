@@ -55,7 +55,13 @@ b-2 : 부팅 시 실행할 bash파일 생성
 > (코드 내용 복사)
 
 
-b-3  
+b-3 부팅 스크립트 수정
+> sudo nano /etc/profile.d/bash_completion.sh
+> "sudo ./test &" 기입
+
+![image](https://user-images.githubusercontent.com/26535065/182523662-5c558961-c214-4009-a4e5-192ca95d9b46.png)
+
+
 
 
 
