@@ -67,7 +67,7 @@ b-4 블루투스 설정
 > sudo apt-get install libreadline-gplv2-dev libncursesw5-dev libssl-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev  
 > sudo sdptool add SP  
 > sudo vi /lib/systemd/system/bluetooth.service
-> "ExecStart=/usr/lib/bluetooth/bluetoothd -noplugin=sap" 으로 수정
+"ExecStart=/usr/lib/bluetooth/bluetoothd -noplugin=sap" 으로 수정
 > sudo systemctl daemon-reload  
 > sudo systemctl restart bluetooth  
 > sudo systemctl enable bluetooth
