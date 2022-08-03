@@ -36,7 +36,7 @@ a. 품목 준비
 1. http://rtk.mbc.co.kr/en/support/manual-MRP-2000-v1.2.pdf  
 2. https://www.devicemart.co.kr/main/index  
 
-
+---
 
 b. 코드세팅  
 b-1 : 라즈베리파이3에 라즈비안(제작자 기준버전 : 2022-04-04-raspios-buster-armhf.img) 설치 후  
