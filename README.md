@@ -61,7 +61,24 @@ b-3 부팅 스크립트 수정
 
 ![image](https://user-images.githubusercontent.com/26535065/182524309-f8955f16-83aa-47b3-90a9-1b92e5efac9f.png)
 
-b-4 led세팅(선택)
+b-4 블루투스 설정  
+
+> sudo apt-get install bluez libbluetooth-dev pi-bluetooth  
+> sudo apt-get install libreadline-gplv2-dev libncursesw5-dev libssl-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev  
+> sudo sdptool add SP  
+> sudo vi /lib/systemd/system/bluetooth.service
+> "ExecStart=/usr/lib/bluetooth/bluetoothd -noplugin=sap" 으로 수정
+> sudo systemctl daemon-reload  
+> sudo systemctl restart bluetooth  
+> sudo systemctl enable bluetooth
+> sudo pip3 install pybluez pybleno  
+> sudo hciconfig hci0 piscan  
+
+연결하고자 하는 휴대폰에서 라즈베리파이가 인식되면 등록한다
+![image](https://user-images.githubusercontent.com/26535065/182525849-f65b8775-3309-4374-a927-9f92bf20fc2d.png)
+
+
+b-5 led세팅(선택)
 
 ![image](https://user-images.githubusercontent.com/26535065/182523967-30f8819b-ec3e-4286-9ced-cd02ba5cf6de.png)
 
@@ -69,6 +86,11 @@ led의 긴 방향(+) : 7번핀(GPIO 4)에 연결
 led의 짧은 방향(-) : 저항과 연결 후 저항의 다른쪽 끝을 6번핀(ground)에 연결
 
 ![image](https://user-images.githubusercontent.com/26535065/182524210-b1b0aad2-dad6-427e-9598-84154c318eb3.png)
+
+---
+
+c 휴대폰 세팅  
+
 
 
 
