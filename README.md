@@ -87,7 +87,7 @@ b-5 led세팅(선택)
 led의 긴 방향(+) : 7번핀(GPIO 4)에 연결  
 led의 짧은 방향(-) : 저항과 연결 후 저항의 다른쪽 끝을 6번핀(ground)에 연결
 
-![image](https://user-images.githubusercontent.com/26535065/182524210-b1b0aad2-dad6-427e-9598-84154c318eb3.png)
+![image](https://user-images.githubusercontent.com/26535065/182526211-d17f260b-a0df-4d6d-b3c2-7c339e7e7bcb.png)
 
 ---
 
