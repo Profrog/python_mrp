@@ -15,6 +15,8 @@ import android.content.Intent
 import android.util.Log
 import android.content.Context
 import android.system.Os.socket
+import android.os.Handler
+import android.os.Message
 
 import androidx.core.content.ContextCompat
 import androidx.activity.result.contract.ActivityResultContracts
@@ -23,23 +25,73 @@ import androidx.annotation.RequiresApi as RequiresApi1
 import java.lang.Integer.TYPE
 import java.util.UUID
 import java.io.IOException
+import java.io.InputStream
 
 
 class MainActivity : AppCompatActivity() {
 
     private var result0 : String = ""
     private var mac_address0 : String = ""
+    private val SEND_START = 0
 
     private lateinit var bluetoothManager : BluetoothManager
     private lateinit var bluetoothAdapter: BluetoothAdapter
     private lateinit var t1 : TextView
     private lateinit var t2 : Spinner
     private lateinit var t3 : Button
+
     lateinit var pairedDevices: Set<BluetoothDevice>
     lateinit var connect_dev : BluetoothDevice
-    private val REQUEST_PERMISSIONS= 2
+    lateinit var socket0 : BluetoothSocket
+    lateinit var myHandler: MyHandler
 
+    private val REQUEST_PERMISSIONS= 2
     var MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
+
+
+     inner class MyHandler : Handler() {
+        override fun handleMessage(msg: Message) {
+            super.handleMessage(msg)
+
+            when (msg.what) {
+                SEND_START -> {
+                    t1.text = msg.obj.toString()
+                }
+
+                else -> {
+
+                }
+            }
+        }
+    }
+
+
+    inner class Readdata() : Thread() {
+
+        private val mmInStream: InputStream = socket0.inputStream
+        private val mmBuffer: ByteArray = ByteArray(1024) // mmBuffer store for the stream
+
+        override fun run() {
+            var numBytes: Int = 1000 // bytes returned from read()
+
+            // Keep listening to the InputStream until an exception occurs.
+            while (true) {
+                // Read from the InputStream.
+                try {
+
+                    mmInStream.read(mmBuffer)
+                    var message: Message = Message.obtain()
+                    message.what = SEND_START
+                    message.obj = String(mmBuffer)
+                    myHandler.sendMessage(message)
+
+                } catch (e: IOException) {
+                    break
+                }
+            }
+        }
+    }
+
 
 
     private val PERMISSIONS = arrayOf(
@@ -95,7 +147,7 @@ class MainActivity : AppCompatActivity() {
                 socket.connect()
             } catch (e: IOException) {
 
-                var socket0 = connect_dev.javaClass.getMethod(
+                socket0 = connect_dev.javaClass.getMethod(
                     "createRfcommSocket"
                , *arrayOf<Class<Int>>(TYPE)).invoke(connect_dev, 1) as BluetoothSocket
                 socket0.connect()
@@ -168,7 +220,10 @@ class MainActivity : AppCompatActivity() {
                 if(device.address == mac_address0){
                     connect_dev = device
                     Toast.makeText(this@MainActivity, "connect to " + connect_dev.address, Toast.LENGTH_SHORT).show()
+                    myHandler = MyHandler()
                     run0()
+                    val rd = Readdata()
+                    rd.start()
                     }
             }
         }
