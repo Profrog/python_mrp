@@ -26,6 +26,10 @@ import java.lang.Integer.TYPE
 import java.util.UUID
 import java.io.IOException
 import java.io.InputStream
+import android.text.method.ScrollingMovementMethod
+
+
+
 
 
 class MainActivity : AppCompatActivity() {
@@ -39,6 +43,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var t1 : TextView
     private lateinit var t2 : Spinner
     private lateinit var t3 : Button
+    private lateinit var t4 : TextView
 
     lateinit var pairedDevices: Set<BluetoothDevice>
     lateinit var connect_dev : BluetoothDevice
@@ -55,7 +60,10 @@ class MainActivity : AppCompatActivity() {
 
             when (msg.what) {
                 SEND_START -> {
-                    t1.text = msg.obj.toString()
+
+                    var mes1 = msg.obj.toString()
+                    t1.text = mes1.replace("\\s".toRegex(), "") + "\n"
+                    t4.text = t4.text.toString() + t1.text.toString()
                 }
 
                 else -> {
@@ -158,12 +166,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun bluetooth_open(){
-        var REQUEST_ENABLE_BT : Int = 1;
+        var REQUEST_ENABLE_BT : Int = 1
         bluetoothManager  = getSystemService(BluetoothManager::class.java)
         bluetoothAdapter = bluetoothManager.getAdapter()
         t1 = findViewById<TextView>(R.id.test)
         t2 = findViewById<Spinner>(R.id.device_list)
         t3 = findViewById<Button>(R.id.conn_bu)
+        t4 = findViewById<TextView>(R.id.all_data)
+        t4.setMovementMethod(ScrollingMovementMethod())
 
         val array_d = ArrayList<String>()
         val sAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, array_d)
@@ -227,6 +237,16 @@ class MainActivity : AppCompatActivity() {
                     }
             }
         }
+
+        t4.movementMethod = ScrollingMovementMethod.getInstance()
+        t4.post {
+            val scrollAmount = t4.layout.getLineTop(t4.lineCount) - t4.height
+            if (scrollAmount > 0)
+                t4.scrollTo(0, scrollAmount)
+            else
+                t4.scrollTo(0,0)
+        }
+
     }
 }
 
