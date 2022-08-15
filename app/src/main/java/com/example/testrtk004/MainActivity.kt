@@ -63,7 +63,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var t6 : BubbleChartView
 
 
-
     lateinit var pairedDevices: Set<BluetoothDevice>
     lateinit var connect_dev : BluetoothDevice
     lateinit var socket0 : BluetoothSocket
@@ -81,7 +80,6 @@ class MainActivity : AppCompatActivity() {
         values.add(value)
         t6.setBubbleChartData(data)
     }
-
 
     private fun generateData() {
 
@@ -122,8 +120,6 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-
-
     private val REQUEST_PERMISSIONS= 2
     var MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
 
@@ -134,10 +130,39 @@ class MainActivity : AppCompatActivity() {
 
             when (msg.what) {
                 SEND_START -> {
-
+                    try {
                     var mes1 = msg.obj.toString()
                     t1.text = mes1.replace("\\s".toRegex(), "") + "\n"
                     t4.text = t4.text.toString() + t1.text.toString()
+
+                    val arr = t1.text.toString().split(",")
+                    var lat0 = arr[1].toFloat()
+                    var lon0 = arr[2].toFloat()
+                    var color0 = arr[3]
+
+                    if (color0 == "A") {
+                        updateData(lat0, lon0, ChartUtils.COLOR_RED)
+                    }
+
+                    else if(color0 == "B") {
+                        updateData(lat0, lon0, ChartUtils.COLOR_BLUE)
+                    }
+
+                    else if(color0 == "C") {
+                        updateData(lat0, lon0, ChartUtils.COLOR_GREEN)
+                    }
+
+                    else if(color0 == "D") {
+                        updateData(lat0, lon0, ChartUtils.COLOR_ORANGE)
+                    }
+
+                    else{
+                        updateData(lat0, lon0, ChartUtils.COLOR_VIOLET)
+                    }
+
+                    } catch (e: IOException) {
+
+                    }
                 }
 
                 else -> {
@@ -146,7 +171,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
 
     inner class Readdata() : Thread() {
 
@@ -173,7 +197,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
 
 
     private val PERMISSIONS = arrayOf(
@@ -283,7 +306,6 @@ class MainActivity : AppCompatActivity() {
             array_d.add(deviceName + ";" + deviceHardwareAddress)
         }
 
-
         t2.setAdapter(sAdapter)
         t2.onItemSelectedListener = object:AdapterView.OnItemSelectedListener{
 
@@ -311,7 +333,7 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(this@MainActivity, "connect to " + connect_dev.address, Toast.LENGTH_SHORT).show()
                     myHandler = MyHandler()
                     run0()
-                    updateData(100f,100f,ChartUtils.COLOR_RED)
+                    //updateData(100f,100f,ChartUtils.COLOR_RED)
                     }
             }
         }
