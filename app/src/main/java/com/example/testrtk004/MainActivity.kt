@@ -10,6 +10,7 @@ import androidx.core.app.ActivityCompat.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 import android.Manifest
+import android.R.attr
 import android.view.View
 import android.content.Intent
 import android.util.Log
@@ -27,9 +28,23 @@ import java.util.UUID
 import java.io.IOException
 import java.io.InputStream
 import android.text.method.ScrollingMovementMethod
+import lecho.lib.hellocharts.view.BubbleChartView
+import java.io.File
+import java.io.FileWriter
+import android.R.attr.data
 
+import lecho.lib.hellocharts.model.BubbleChartData
+import android.R.attr.shape
+import lecho.lib.hellocharts.util.ChartUtils
+import lecho.lib.hellocharts.model.BubbleValue
 
-
+import java.util.ArrayList;
+import java.util.List;
+import lecho.lib.hellocharts.gesture.ZoomType;
+import lecho.lib.hellocharts.listener.BubbleChartOnValueSelectListener;
+import lecho.lib.hellocharts.model.Axis;
+import lecho.lib.hellocharts.model.ValueShape;
+import lecho.lib.hellocharts.view.Chart;
 
 
 class MainActivity : AppCompatActivity() {
@@ -44,11 +59,70 @@ class MainActivity : AppCompatActivity() {
     private lateinit var t2 : Spinner
     private lateinit var t3 : Button
     private lateinit var t4 : TextView
+    private lateinit var t5 : Button
+    private lateinit var t6 : BubbleChartView
+
+
 
     lateinit var pairedDevices: Set<BluetoothDevice>
     lateinit var connect_dev : BluetoothDevice
     lateinit var socket0 : BluetoothSocket
     lateinit var myHandler: MyHandler
+    val values: MutableList<BubbleValue> = ArrayList()
+    lateinit var data: BubbleChartData
+
+
+    private fun updateData(lat0 : Float, lon0 : Float, num0 : Int) {
+        val value = BubbleValue(
+            lat0 , lon0 , 1f
+        )
+        value.color = num0
+        value.setShape(ValueShape.CIRCLE)
+        values.add(value)
+        t6.setBubbleChartData(data)
+    }
+
+
+    private fun generateData() {
+
+        val chart: BubbleChartView? = null
+
+        val hasAxes = true
+        val hasAxesNames = true
+        val shape = ValueShape.CIRCLE
+        val hasLabels = false
+        val hasLabelForSelected = false
+
+        val value = BubbleValue(
+            100f, 100f , 100f
+        )
+        value.color = 0
+        value.setShape(ValueShape.SQUARE)
+        values.add(value)
+
+
+        data = BubbleChartData(values)
+        data.setHasLabels(hasLabels)
+        data.setHasLabelsOnlyForSelected(hasLabelForSelected)
+        if (hasAxes) {
+            val axisX = Axis()
+            val axisY: Axis = Axis().setHasLines(true)
+            if (hasAxesNames) {
+                axisX.setName("lat")
+                axisY.setName("lon")
+            }
+            data.setAxisXBottom(axisX)
+            data.setAxisYLeft(axisY)
+        } else {
+            data.setAxisXBottom(null)
+            data.setAxisYLeft(null)
+        }
+
+        t6.setBubbleChartData(data)
+
+    }
+
+
 
     private val REQUEST_PERMISSIONS= 2
     var MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
@@ -104,7 +178,7 @@ class MainActivity : AppCompatActivity() {
 
     private val PERMISSIONS = arrayOf(
         Manifest.permission.BLUETOOTH_CONNECT,
-        Manifest.permission.BLUETOOTH_SCAN
+        Manifest.permission.BLUETOOTH_SCAN,
     )
 
     private fun hasPermissions(context: Context?, permissions: Array<String>): Boolean {
@@ -175,6 +249,11 @@ class MainActivity : AppCompatActivity() {
         t4 = findViewById<TextView>(R.id.all_data)
         t4.setMovementMethod(ScrollingMovementMethod())
 
+        t6 = findViewById<BubbleChartView>(R.id.chart)
+        generateData()
+        //t5 = findViewById<Button>(R.id.save_bu)
+
+
         val array_d = ArrayList<String>()
         val sAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, array_d)
 
@@ -232,19 +311,9 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(this@MainActivity, "connect to " + connect_dev.address, Toast.LENGTH_SHORT).show()
                     myHandler = MyHandler()
                     run0()
-                    val rd = Readdata()
-                    rd.start()
+                    updateData(100f,100f,ChartUtils.COLOR_RED)
                     }
             }
-        }
-
-        t4.movementMethod = ScrollingMovementMethod.getInstance()
-        t4.post {
-            val scrollAmount = t4.layout.getLineTop(t4.lineCount) - t4.height
-            if (scrollAmount > 0)
-                t4.scrollTo(0, scrollAmount)
-            else
-                t4.scrollTo(0,0)
         }
 
     }

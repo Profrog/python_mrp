@@ -37,7 +37,7 @@
     <TextView
         android:id="@+id/all_data"
         android:layout_width="300dp"
-        android:layout_height="300dp"
+        android:layout_height="200dp"
         android:layout_below="@+id/conn_bu"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
@@ -49,6 +49,28 @@
         android:scrollbars="vertical"
         android:gravity="bottom"
         android:text="" />
+
+    <lecho.lib.hellocharts.view.BubbleChartView
+        android:id="@+id/chart"
+        android:layout_below="@+id/all_data"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_margin="10dp"/>
+
+
+
+    <!--
+    <Button
+        android:id="@+id/save_bu"
+        android:layout_below="@+id/all_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text = "저장"
+        android:layout_margin="10dp"
+        android:textSize="18sp"
+        />
+        -->
+
 
 
 </RelativeLayout>
