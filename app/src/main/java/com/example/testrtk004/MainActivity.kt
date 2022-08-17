@@ -129,11 +129,15 @@ class MainActivity : AppCompatActivity() {
             super.handleMessage(msg)
 
             when (msg.what) {
+
+
                 SEND_START -> {
-                    try {
+
                     var mes1 = msg.obj.toString()
                     t1.text = mes1.replace("\\s".toRegex(), "") + "\n"
                     t4.text = t4.text.toString() + t1.text.toString()
+
+                    try {
 
                     val arr = t1.text.toString().split(",")
                     var lat0 = arr[1].toFloat()
@@ -161,12 +165,12 @@ class MainActivity : AppCompatActivity() {
                     }
 
                     } catch (e: IOException) {
-
+                        t1.text = "error"
                     }
                 }
 
                 else -> {
-
+                    t1.text = "type error"
                 }
             }
         }
@@ -184,7 +188,6 @@ class MainActivity : AppCompatActivity() {
             while (true) {
                 // Read from the InputStream.
                 try {
-
                     mmInStream.read(mmBuffer)
                     var message: Message = Message.obtain()
                     message.what = SEND_START
@@ -333,6 +336,8 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(this@MainActivity, "connect to " + connect_dev.address, Toast.LENGTH_SHORT).show()
                     myHandler = MyHandler()
                     run0()
+                    val rd = Readdata()
+                    rd.start()
                     //updateData(100f,100f,ChartUtils.COLOR_RED)
                     }
             }
