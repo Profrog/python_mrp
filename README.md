@@ -93,6 +93,9 @@ led의 짧은 방향(-) : 저항과 연결 후 저항의 다른쪽 끝을 6번�
 
 c 휴대폰 세팅
 
+![image](https://user-images.githubusercontent.com/26535065/185283879-89c41c11-3714-4337-8dd6-5de81dc8eaac.png)
+
+
 다운로드 : https://onesto.re/0000764474  
 https://github.com/Profrog/python_mrp/tree/app_code  
 
