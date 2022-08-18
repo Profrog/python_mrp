@@ -135,7 +135,7 @@ def serial_cont():
     
     #string0 = str(end0-start0) + forsplit + str(lat1) + forsplit + str(lon1) + forsplit + str(speed0(lat1,lon1,time1)) + "\n"
     lat2 = float(str(lat1)[6:9]) if lat1 > 0 else lat1
-    lon2 = float(str(lot1)[7:10]) if lon1 > 0 else lon1
+    lon2 = float(str(lon1)[7:10]) if lon1 > 0 else lon1
     string0 = str(end0-start0) + forsplit + str(lat2) + forsplit + str(lon2) + forsplit + zone_num(lat1,lon1) + forsplit + str(speed0(lat1,lon1,time1)) + "\n"
     
     data.write(string0)
