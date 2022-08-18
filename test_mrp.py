@@ -87,19 +87,19 @@ def speed0(lat1, lon1,time1):
    return (math.sqrt(math.pow(lat_conv * (lat1-lat0) * l_conv , 2) + math.pow(lon_conv * (lon1-lon0) * l_conv , 2)))/(time1 - time0)
 
 def zone_num(lat1, lon1):
-  if lon1 < lon_list[0] and lon1 > lat_list[5]:
+  if lon1 < lon_list[0] and lon1 > lon_list[5]:
     if lat1 > lat_list[0] and lat1 < lat_list[1]:
       return "A"
   
-  if lon1 < lon_list[0] and lon1 > lat_list[5]:
+  if lon1 < lon_list[0] and lon1 > lon_list[5]:
     if lat1 > lat_list[1] and lat1 < lat_list[2]:
       return "B"    
         
-  if lon1 < lon_list[0] and lon1 > lat_list[5]:
+  if lon1 < lon_list[0] and lon1 > lon_list[5]:
     if lat1 > lat_list[2] and lat1 < lat_list[3]:
       return "C"
   
-  if lon1 < lon_list[0] and lon1 > lat_list[5]:
+  if lon1 < lon_list[0] and lon1 > lon_list[5]:
     if lat1 > lat_list[3] and lat1 < lat_list[4]:
       return "D"
   
